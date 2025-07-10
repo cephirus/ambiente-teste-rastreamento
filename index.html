@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambiente de Teste de Rastreio</title>
+    
+    <!-- INSERIR CÓDIGO GTM AQUI -->
+    <!-- Google Tag Manager -->
+    <!-- 
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-XXXXXX');</script>
+    -->
+    <!-- End Google Tag Manager -->
+    
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        /* Container principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Seções principais */
+        .section {
+            padding: 60px 0;
+            background: white;
+            margin: 40px 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2em;
+            color: #667eea;
+        }
+        
+        /* Botões de eventos */
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .button-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .button-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Botões específicos com cores diferentes */
+        .btn-conversion {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+        }
+        
+        .btn-conversion:hover {
+            background: linear-gradient(135deg, #ee5a24, #ff6b6b);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(238, 90, 36, 0.4);
+        }
+        
+        .btn-download {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            color: white;
+        }
+        
+        .btn-download:hover {
+            background: linear-gradient(135deg, #44a08d, #4ecdc4);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(68, 160, 141, 0.4);
+        }
+        
+        .btn-contact {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+        
+        .btn-contact:hover {
+            background: linear-gradient(135deg, #764ba2, #667eea);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(118, 75, 162, 0.4);
+        }
+        
+        /* Seção de UTMs */
+        .utm-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .utm-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .utm-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .utm-card h3 {
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .utm-card p {
+            color: #6c757d;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+        
+        .utm-link {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .utm-link:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        /* Informações técnicas */
+        .info-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+        
+        .info-box h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .info-box code {
+            background: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        /* Footer */
+        footer {
+            background: #343a40;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+        
+        footer p {
+            opacity: 0.8;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            
+            header p {
+                font-size: 1em;
+            }
+            
+            .buttons-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .utm-links {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+        }
+        
+        /* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .section {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        /* Feedback visual para cliques */
+        .btn:active {
+            transform: scale(0.95);
+        }
+        
+        /* Indicadores de tracking */
+        .tracking-indicator {
+            position: relative;
+        }
+        
+        .tracking-indicator::after {
+            content: "📊";
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+    <!-- INSERIR CÓDIGO GTM NOSCRIPT AQUI -->
+    <!-- Google Tag Manager (noscript) -->
+    <!-- 
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXX"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    -->
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>Ambiente de Teste de Rastreio</h1>
+            <p>Este site foi criado para testar eventos com Google Tag Manager, Google Analytics 4 e UTMs.</p>
+        </div>
+    </header>
+    
+    <!-- Seção de Botões para Eventos -->
+    <div class="container">
+        <section class="section">
+            <h2>Botões para Testes de Eventos</h2>
+            <div class="info-box">
+                <h4>Instruções de Rastreamento:</h4>
+                <p>Cada botão possui um ID único para configuração de triggers no GTM:</p>
+                <p><code>botao_conversao</code>, <code>botao_download</code>, <code>botao_contato</code></p>
+            </div>
+            
+            <div class="buttons-grid">
+                <!-- Botão 1: Conversão -->
+                <div class="button-card">
+                    <h3>🎯 Evento de Conversão</h3>
+                    <p>Simula uma conversão importante no site</p>
+                    <button 
+                        type="button" 
+                        id="botao_conversao" 
+                        class="btn btn-conversion tracking-indicator conversion-btn"
+                        data-event="conversion"
+                        data-value="150">
+                        Clique para simular conversão
+                    </button>
+                </div>
+                
+                <!-- Botão 2: Download -->
+                <div class="button-card">
+                    <h3>📥 Download de Conteúdo</h3>
+                    <p>Rastreia downloads de materiais</p>
+                    <button 
+                        type="button" 
+                        id="botao_download" 
+                        class="btn btn-download tracking-indicator download-btn"
+                        data-event="download"
+                        data-file="ebook-marketing.pdf">
+                        Download de conteúdo
+                    </button>
+                </div>
+                
+                <!-- Botão 3: Contato -->
+                <div class="button-card">
+                    <h3>📞 Contato</h3>
+                    <p>Inicia processo de contato</p>
+                    <button 
+                        type="button" 
+                        id="botao_contato" 
+                        class="btn btn-contact tracking-indicator contact-btn"
+                        data-event="contact"
+                        data-method="form">
+                        Entrar em contato
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Seção de Links com UTMs -->
+        <section class="section">
+            <h2>Links com Parâmetros UTM</h2>
+            <div class="info-box">
+                <h4>Parâmetros UTM para Teste:</h4>
+                <p>Estes links simulam diferentes origens de tráfego para análise no GA4</p>
+            </div>
+            
+            <div class="utm-links">
+                <!-- Link 1: Google Ads -->
+                <div class="utm-card">
+                    <h3>🔍 Google Ads</h3>
+                    <p>Campanha de pesquisa paga</p>
+                    <a href="https://seusite.com/?utm_source=google&utm_medium=cpc&utm_campaign=campanha1&utm_content=anuncio_teste&utm_term=marketing_digital" 
+                       class="utm-link google-ads-link"
+                       target="_blank"
+                       rel="noopener">
+                        Simular tráfego Google Ads
+                    </a>
+                </div>
+                
+                <!-- Link 2: Instagram -->
+                <div class="utm-card">
+                    <h3>📱 Instagram</h3>
+                    <p>Campanha em redes sociais</p>
+                    <a href="https://seusite.com/?utm_source=instagram&utm_medium=social&utm_campaign=campanha2&utm_content=post_organico&utm_term=engajamento" 
+                       class="utm-link instagram-link"
+                       target="_blank"
+                       rel="noopener">
+                        Simular tráfego Instagram
+                    </a>
+                </div>
+                
+                <!-- Link 3: Email Marketing -->
+                <div class="utm-card">
+                    <h3>📧 Email Marketing</h3>
+                    <p>Campanha de email marketing</p>
+                    <a href="https://seusite.com/?utm_source=email&utm_medium=email&utm_campaign=campanha3&utm_content=newsletter_janeiro&utm_term=promocional" 
+                       class="utm-link email-link"
+                       target="_blank"
+                       rel="noopener">
+                        Simular tráfego Email
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Seção de Informações Técnicas -->
+        <section class="section">
+            <h2>Informações para Implementação</h2>
+            
+            <div class="info-box">
+                <h4>📋 Checklist de Implementação:</h4>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Substituir <code>GTM-XXXXXX</code> pelo seu ID do Google Tag Manager</li>
+                    <li>Configurar triggers para os IDs: <code>botao_conversao</code>, <code>botao_download</code>, <code>botao_contato</code></li>
+                    <li>Configurar variáveis personalizadas usando os data-attributes</li>
+                    <li>Testar os parâmetros UTM no GA4</li>
+                    <li>Validar eventos no GTM Preview Mode</li>
+                </ul>
+            </div>
+            
+            <div class="info-box">
+                <h4>🎯 Eventos Personalizados Sugeridos:</h4>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>conversion_click:</strong> Valor, categoria, ação</li>
+                    <li><strong>download_start:</strong> Nome do arquivo, tipo</li>
+                    <li><strong>contact_intent:</strong> Método de contato</li>
+                    <li><strong>utm_tracking:</strong> Source, medium, campaign</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Projeto de rastreamento para fins educacionais.</p>
+            <p style="margin-top: 10px; opacity: 0.6;">Desenvolvido para testes com GTM e GA4</p>
+        </div>
+    </footer>
+    
+    <!-- JavaScript para funcionalidades básicas -->
+    <script>
+        // Função para simular feedback visual nos botões
+        function addClickFeedback() {
+            const buttons = document.querySelectorAll('.btn');
+            
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Feedback visual
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                    
+                    // Log para debug (remover em produção)
+                    console.log('Evento clicado:', {
+                        id: this.id,
+                        event: this.dataset.event,
+                        timestamp: new Date().toISOString()
+                    });
+                    
+                    // Exemplo de push para dataLayer (descomente após configurar GTM)
+                    /*
+                    if (typeof dataLayer !== 'undefined') {
+                        dataLayer.push({
+                            'event': this.dataset.event + '_click',
+                            'element_id': this.id,
+                            'element_classes': this.className,
+                            'custom_data': this.dataset
+                        });
+                    }
+                    */
+                });
+            });
+        }
+        
+        // Função para rastrear cliques em links UTM
+        function trackUTMClicks() {
+            const utmLinks = document.querySelectorAll('.utm-link');
+            
+            utmLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Log para debug
+                    console.log('Link UTM clicado:', {
+                        href: this.href,
+                        timestamp: new Date().toISOString()
+                    });
+                    
+                    // Exemplo de push para dataLayer
+                    /*
+                    if (typeof dataLayer !== 'undefined') {
+                        dataLayer.push({
+                            'event': 'utm_link_click',
+                            'link_url': this.href,
+                            'link_classes': this.className
+                        });
+                    }
+                    */
+                });
+            });
+        }
+        
+        // Inicializar funcionalidades quando página carrega
+        document.addEventListener('DOMContentLoaded', function() {
+            addClickFeedback();
+            trackUTMClicks();
+            
+            // Log de carregamento da página
+            console.log('Página de teste GTM carregada:', {
+                timestamp: new Date().toISOString(),
+                url: window.location.href,
+                userAgent: navigator.userAgent
+            });
+        });
+        
+        // Função helper para extrair parâmetros UTM da URL atual
+        function getUTMParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return {
+                utm_source: urlParams.get('utm_source'),
+                utm_medium: urlParams.get('utm_medium'),
+                utm_campaign: urlParams.get('utm_campaign'),
+                utm_content: urlParams.get('utm_content'),
+                utm_term: urlParams.get('utm_term')
+            };
+        }
+        
+        // Mostrar parâmetros UTM no console se existirem
+        const utmParams = getUTMParams();
+        if (Object.values(utmParams).some(param => param !== null)) {
+            console.log('Parâmetros UTM detectados:', utmParams);
+        }
+    </script>
+</body>
+</html>
